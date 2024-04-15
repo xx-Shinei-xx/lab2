@@ -74,7 +74,7 @@ if info_button_state:
     st.subheader('Laboratorio 2: Predicción de COVID19')
 
     # para el reporte
-    with st.expander(Resumen'):
+    with st.expander('Resumen'):
         st.write("""
 En respuesta a la pandemia de COVID-19 en Guatemala, se utilizan técnicas estadísticas para modelar y prever la evolución de casos hasta una fecha específica, mediante el ajuste de una distribución binomial a datos del Ministerio de Salud. Este enfoque permite anticipar tendencias futuras y respaldar la toma de decisiones en salud pública.        
                 """)
