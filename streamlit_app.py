@@ -3,17 +3,17 @@ import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 
-# Define functions
+# para las funciones que se usaran
 def gaussian(x, A, u, r):
-    """ Gaussian function """
+    """ Distribución gausseana """
     return A * np.exp(-((x - u) / r) ** 2 / 2)
 
 def plot_covid_data(data, A, u, r):
-    """ Plot COVID-19 data and Gaussian fit """
+    """ Grafica del covid 19 y su fit """
     fig = go.Figure()
     x_fit = np.linspace(0, len(data) - 1, 100)
     
-    # Plot bar chart of COVID-19 data
+    # codigo para el fit y la grafica
     fig.add_trace(go.Bar(
         x=data.index,
         y=data['Casos por fecha de emisión de resultados'],
@@ -21,7 +21,7 @@ def plot_covid_data(data, A, u, r):
         marker=dict(color=data['Casos por fecha de emisión de resultados'], colorscale='Reds')
     ))
     
-    # Calculate and plot Gaussian fit
+    # plotear la Distribución de gauss
     fit_y = gaussian(x_fit, A, u, r)
     fig.add_trace(go.Scatter(
         x=x_fit,
@@ -30,7 +30,7 @@ def plot_covid_data(data, A, u, r):
         mode='lines'
     ))
     
-    # Customize plot layout
+    # estilo
     fig.update_layout(
         title='Gráfico combinado - Conjunto de datos COVID-19',
         xaxis_title='Número de día',
@@ -40,23 +40,23 @@ def plot_covid_data(data, A, u, r):
     
     return fig
 
-# Load data
+# datos
 data = pd.read_csv('datos1.csv')
 
-# Create Streamlit app
+# streamlit
 st.title('Datos COVID-19')
 
-# Display parameters for Gaussian fit
+# datos para el fit de la Distribución  gauseana
 st.sidebar.title('Parámetros de Ajuste Gaussiano')
 A = st.sidebar.slider('Amplitud (A)', min_value=0.0, max_value=1000.0, value=465.464, step=10.0)
 u = st.sidebar.slider('Media (u)', min_value=0.0, max_value=100.0, value=89.2538, step=1.0)
 r = st.sidebar.slider('Desviación estándar (r)', min_value=0.0, max_value=20.0, value=7.13597, step=0.1)
 
-# Display the data
+# ver datos
 st.write('**Datos COVID-19**')
 st.write(data)
 
-# Information about COVID-19 in Guatemala
+# texto
 info_text = """
 El COVID-19, derivado de "Coronavirus Disease 2019", es una afección respiratoria provocada por el virus SARS-CoV-2, 
 perteneciente a la familia de los coronavirus, que también incluye el SARS-CoV y el MERS-CoV. La principal vía de 
@@ -89,11 +89,11 @@ desafíos planteados por el COVID-19 y trabajar hacia la recuperación integral 
 clave para entender la enfermedad y desarrollar vacunas y tratamientos eficaces.
 """
 
-# Button to display additional information
+# para ver
 if st.button('Información sobre COVID-19 en Guatemala'):
     st.write(info_text)
 
-# Run code button
+# para el codigo
 if st.button('Ejecutar Código'):
     st.write('**Visualización de Datos**')
     fig = plot_covid_data(data, A, u, r)
