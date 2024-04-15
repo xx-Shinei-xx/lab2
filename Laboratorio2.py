@@ -3,47 +3,6 @@ import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 
-# Load data
-data1 = pd.read_csv('datos1.csv')
-data2 = pd.read_csv('datos2.csv')
-
-# Gaussian function
-def gaussian(x, A, u, r):
-    return A * np.exp(-((x - u) / r) ** 2 / 2)
-
-# Create Streamlit app
-st.title('Interactive COVID-19 Data Visualization')
-
-# Initialize figure and parameters
-fig = go.Figure()
-x_fit = np.linspace(0, 100, 100)
-
-# Plot the first data set with a Gaussian fit
-fig.add_trace(go.Bar(
-    x=data1['N'],
-    y=data1['Casos por fecha de emisión de resultados'],
-    name='Días VS total de contagios',
-    marker=dict(color=data1['Casos por fecha de emisión de resultados'], colorscale='Reds')
-))
-
-A = 465.464
-u = 89.2538
-r = 7.13597
-fit_y = gaussian(x_fit, A, u, r)
-fig.add_trace(go.Scatter(
-    x=x_fit,
-    y=fit_y,
-    name='Fit',
-    mode='lines'
-))
-
-# Plot layout for the first chart
-fig.update_layout(
-    title='Gráfico combinado - Primer conjunto de datos',
-    xaxis_title='Número de día',
-    yaxis_title='Casos por fecha de emisión de resultados',
-    barmode='group'
-)
 
 # Information about COVID-19 in Guatemala
 info_text = """
