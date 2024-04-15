@@ -44,7 +44,7 @@ def plot_covid_data(data, A, u, r):
 data = pd.read_csv('datos1.csv')
 
 # Create Streamlit app
-st.title('Visualización Interactiva de Datos COVID-19')
+st.title('Datos COVID-19')
 
 # Display parameters for Gaussian fit
 st.sidebar.title('Parámetros de Ajuste Gaussiano')
