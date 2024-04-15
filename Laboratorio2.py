@@ -1,64 +1,84 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
-import plotly.express as px
-import numpy as np
 import plotly.graph_objects as go
+import numpy as np
 
-data = pd.read_csv('datos1.csv')
+# Load data
+data1 = pd.read_csv('datos1.csv')
+data2 = pd.read_csv('datos2.csv')
+
+# Gaussian function
+def gaussian(x, A, u, r):
+    return A * np.exp(-((x - u) / r) ** 2 / 2)
+
+# Create Streamlit app
+st.title('Interactive COVID-19 Data Visualization')
+
+# Initialize figure and parameters
+fig = go.Figure()
+x_fit = np.linspace(0, 100, 100)
+
+# Plot the first data set with a Gaussian fit
+fig.add_trace(go.Bar(
+    x=data1['N'],
+    y=data1['Casos por fecha de emisión de resultados'],
+    name='Días VS total de contagios',
+    marker=dict(color=data1['Casos por fecha de emisión de resultados'], colorscale='Reds')
+))
+
 A = 465.464
 u = 89.2538
 r = 7.13597
-x_fit = np.linspace(0, 100, 100)
-x = data['N']
+fit_y = gaussian(x_fit, A, u, r)
+fig.add_trace(go.Scatter(
+    x=x_fit,
+    y=fit_y,
+    name='Fit',
+    mode='lines'
+))
 
-def funcion_gaussiana(x, A, u, r):
-    return A * np.exp(-((x - u) / r) ** 2 / 2)
-
-fit_y = funcion_gaussiana(x, A, u, r)
-
-fig = go.Figure()
-
-fig.add_trace(go.Bar(x=x, y=data['Casos por fecha de emisión de resultados'],name='Días VS total de contagios',marker=dict(
-        colorscale='redor',  # Aquí puedes cambiar el esquema de colores según tu preferencia
-        color=data['Casos por fecha de emisión de resultados']
-    )))
-
-fig.add_trace(go.Scatter(x=x_fit, y=fit_y, name='Fit', mode='lines'))
-
+# Plot layout for the first chart
 fig.update_layout(
-    title='Gráfico combinado',
-    xaxis_title='Numero de día',
+    title='Gráfico combinado - Primer conjunto de datos',
+    xaxis_title='Número de día',
     yaxis_title='Casos por fecha de emisión de resultados',
     barmode='group'
 )
 
-st.plotly_chart(fig)
+# Second data set
+fig2 = go.Figure()
+x_fit2 = np.linspace(0, 190, 100)
 
+fig2.add_trace(go.Bar(
+    x=data2['N'],
+    y=data2['Casos por fecha de emisión de resultados'],
+    name='Días VS total de contagios',
+    marker=dict(color=data2['Casos por fecha de emisión de resultados'], colorscale='inferno')
+))
 
-#Grafica del inicio al 1 de junio de 2020
-data2 = pd.read_csv('datos2.csv')
-A2= 1062.39
-u2=  139.803 
-r2=  35.1769 
-x_fit2= np.linspace(0,190,100)
-x2= data2['N']
-def funcion2_gaussiana(x2, A2, u2, r2):
-    return A2 * np.exp(-((x2 - u2) / r2) ** 2 / 2)  
-fit2_y = funcion2_gaussiana(x2, A2, u2, r2)
-fig2= go.Figure()
+A2 = 1062.39
+u2 = 139.803
+r2 = 35.1769
+fit2_y = gaussian(x_fit2, A2, u2, r2)
+fig2.add_trace(go.Scatter(
+    x=x_fit2,
+    y=fit2_y,
+    name='Fit',
+    mode='lines'
+))
 
-fig2.add_trace(go.Bar(x=x2, y=data2['Casos por fecha de emisión de resultados'],name='Días VS total de contagios',marker=dict(
-        colorscale='inferno',  # Aquí puedes cambiar el esquema de colores según tu preferencia
-        color=data2['Casos por fecha de emisión de resultados']
-    )))
-
-fig2.add_trace(go.Trace(x=x_fit2, y=fit2_y, name='Fit'))
+# Plot layout for the second chart
 fig2.update_layout(
-    title='Gráfico combinado',
-     xaxis_title='Numero de día',
+    title='Gráfico combinado - Segundo conjunto de datos',
+    xaxis_title='Número de día',
     yaxis_title='Casos por fecha de emisión de resultados',
     barmode='group'
 )
 
-st.plotly_chart(fig2)
+# Interactive buttons
+chart_selection = st.radio("Seleccionar Gráfico:", ('Primer conjunto de datos', 'Segundo conjunto de datos'))
+
+if chart_selection == 'Primer conjunto de datos':
+    st.plotly_chart(fig)
+elif chart_selection == 'Segundo conjunto de datos':
+    st.plotly_chart(fig2)
