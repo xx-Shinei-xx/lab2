@@ -113,7 +113,7 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
         - La vigilancia epidemiológica continua y la recopilación de datos precisos son esenciales para mejorar la precisión de los modelos y respaldar decisiones basadas en evidencia en la gestión de la pandemia.
         """)
 
-     with st.expander('Discusión de resultados'):
+     with st.expander('a'):
         st.write("""
         Se puede apreciar una mayor precisión en la predicción del primer gráfico, gracias a un ajuste más certero. Sin embargo, en el segundo gráfico, a pesar de aplicar el mismo ajuste de una función gaussiana, la predicción parece aproximarse, pero no logra ajustarse completamente a los datos.
         """)
