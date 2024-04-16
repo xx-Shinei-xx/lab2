@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 
 def gaussian(x, A, u, r):
