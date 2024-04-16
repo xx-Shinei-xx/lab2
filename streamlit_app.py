@@ -1,9 +1,13 @@
+
 import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
-import plotly.express as px
-import numpy as np
 import plotly.graph_objects as go
+import numpy as np
+import matplotlib
+
+# Configura Matplotlib para un backend no interactivo
+matplotlib.use('agg')  # Utiliza el backend 'agg' (renderizado de imagen)
+import matplotlib.pyplot as plt
 
 # Función para ajustar una distribución gaussiana
 def gaussian(x, A, u, r):
@@ -83,11 +87,14 @@ if show_code_button:
     st.subheader('Código Fuente')
     st.code("""
     import pandas as pd
-    import matplotlib.pyplot as plt
     import streamlit as st
-    import plotly.express as px
-    import numpy as np
     import plotly.graph_objects as go
+    import numpy as np
+    import matplotlib
+
+    # Configura Matplotlib para un backend no interactivo
+    matplotlib.use('agg')  # Utiliza el backend 'agg' (renderizado de imagen)
+    import matplotlib.pyplot as plt
 
     # Funciones y código aquí
     """)
@@ -104,4 +111,3 @@ st.plotly_chart(fig1)
 st.subheader('Segundo conjunto de datos')
 fig2 = plot_covid_data(data2, A2, u2, r2)
 st.plotly_chart(fig2)
-
