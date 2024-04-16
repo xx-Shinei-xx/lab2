@@ -57,15 +57,15 @@ st.title('Visualización Interactiva de Datos COVID-19')
 #adornos para la grafica 1
 st.sidebar.title('Parámetros de Ajuste Gaussiano')
 st.sidebar.subheader('Primer conjunto de datos')
-A_slider1 = st.sidebar.slider('Amplitud (A)', min_value=0.0, max_value=1000.0, value=A1, step=10.0)
-u_slider1 = st.sidebar.slider('Media (u)', min_value=0.0, max_value=100.0, value=u1, step=1.0)
-r_slider1 = st.sidebar.slider('Desviación estándar (r)', min_value=0.0, max_value=20.0, value=r1, step=0.1)
+A_slider1 = st.sidebar.slider('Amplitud', min_value=0.0, max_value=1000.0, value=A1, step=10.0)
+u_slider1 = st.sidebar.slider('Media', min_value=0.0, max_value=100.0, value=u1, step=1.0)
+r_slider1 = st.sidebar.slider('Desviación estándar', min_value=0.0, max_value=20.0, value=r1, step=0.1)
 
 # adornos para la grafica 2
 st.sidebar.subheader('Segundo conjunto de datos')
-A_slider2 = st.sidebar.slider('Amplitud (A)', min_value=0.0, max_value=2000.0, value=A2, step=10.0)
-u_slider2 = st.sidebar.slider('Media (u)', min_value=0.0, max_value=200.0, value=u2, step=1.0)
-r_slider2 = st.sidebar.slider('Desviación estándar (r)', min_value=0.0, max_value=40.0, value=r2, step=0.1)
+A_slider2 = st.sidebar.slider('Amplitud', min_value=0.0, max_value=2000.0, value=A2, step=10.0)
+u_slider2 = st.sidebar.slider('Media', min_value=0.0, max_value=200.0, value=u2, step=1.0)
+r_slider2 = st.sidebar.slider('Desviación estándar', min_value=0.0, max_value=40.0, value=r2, step=0.1)
 
 # mostrar
 info_button_state = st.button('Mostrar Información sobre COVID-19')
