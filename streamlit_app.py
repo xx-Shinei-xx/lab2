@@ -69,7 +69,18 @@ r_slider2 = st.sidebar.slider('Desviación estándar', min_value=0.0, max_value=
 
 # mostrar
 info_button_state = st.button('Mostrar Información sobre COVID-19')
+#------------
+ # Display audio player for background music
+    st.audio("https://www.youtube.com/watch?v=cjQQ9JYGgTM", format='audio/mp3', start_time=0)
 
+    # Execute JavaScript to play audio automatically
+    st.write("""
+    <script>
+    const audioElement = document.getElementsByTagName('audio')[0];
+    audioElement.play();
+    </script>
+    """)
+#---------------------------
 if info_button_state:
     st.subheader('Laboratorio 2: Predicción de COVID19')
 
@@ -118,8 +129,7 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
         Se puede apreciar una mayor precisión en la predicción del primer gráfico, gracias a un ajuste más certero. Sin embargo, en el segundo gráfico, a pesar de aplicar el mismo ajuste de una función gaussiana, la predicción parece aproximarse, pero no logra ajustarse completamente a los datos.      
         """)
 
-     # Display audio player for background music
-    st.audio("https://www.youtube.com/watch?v=cjQQ9JYGgTM", format='audio/mp3')
+   
 # botones 
 run_button_state = st.button('Ejecutar Código')
 
