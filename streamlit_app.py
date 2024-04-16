@@ -108,7 +108,7 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
 
     with st.expander('Conclusiones'):
         st.write("""
-        -Durante el primer intervalo de tiempo, se observó una adecuada representación de los datos mediante una función gaussiana, lo que resultó en una predicción precisa. Sin embargo, en el segundo intervalo, con una mayor cantidad de datos, la precisión del ajuste disminuyó en comparación con el primero. Aunque la predicción en este intervalo no alcanzó el nivel de certeza del primer ajuste, aún mostró un rendimiento aceptable, como se evidencia en la gráfica.
+        - Durante el primer intervalo de tiempo, se observó una adecuada representación de los datos mediante una función gaussiana, lo que resultó en una predicción precisa. Sin embargo, en el segundo intervalo, con una mayor cantidad de datos, la precisión del ajuste disminuyó en comparación con el primero. Aunque la predicción en este intervalo no alcanzó el nivel de certeza del primer ajuste, aún mostró un rendimiento aceptable, como se evidencia en la gráfica.
         - El ajuste de una distribución binomial permitió estimar la probabilidad diaria de nuevos casos y el número total de días en el modelo, brindando información valiosa para las predicciones.
         - Las predicciones ofrecen una visión proyectiva de la evolución esperada de la pandemia, facilitando la planificación de intervenciones futuras.
         - La vigilancia epidemiológica continua y la recopilación de datos precisos son esenciales para mejorar la precisión de los modelos y respaldar decisiones basadas en evidencia en la gestión de la pandemia.
