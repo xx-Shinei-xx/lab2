@@ -118,7 +118,8 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
         Se puede apreciar una mayor precisión en la predicción del primer gráfico, gracias a un ajuste más certero. Sin embargo, en el segundo gráfico, a pesar de aplicar el mismo ajuste de una función gaussiana, la predicción parece aproximarse, pero no logra ajustarse completamente a los datos.      
         """)
 
-    
+     # Display audio player for background music
+    st.audio("https://www.youtube.com/watch?v=cjQQ9JYGgTM", format='audio/mp3')
 # botones 
 run_button_state = st.button('Ejecutar Código')
 
