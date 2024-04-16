@@ -86,7 +86,7 @@ def show_loading_image():
     st.markdown(
         """
         <div id="loading-image-container">
-            <img id="loading-image" src="https://example.com/your-image.jpg">
+            <img id="loading-image" src="630534609ef529522ff22e5a152937c0.jpg">
         </div>
         """,
         unsafe_allow_html=True
