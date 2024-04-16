@@ -118,6 +118,12 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
         st.write("""
         Se puede apreciar una mayor precisión en la predicción del primer gráfico, gracias a un ajuste más certero. Sin embargo, en el segundo gráfico, a pesar de aplicar el mismo ajuste de una función gaussiana, la predicción parece aproximarse, pero no logra ajustarse completamente a los datos.      
         """)
+    with st.expander('Referencias'):
+        st.write("""
+        https://pro.arcgis.com/es/proapp/latest/help/analysis/geoprocessing/charts/histogram.html
+        Taylor, John R. “An introduction to error analysis, The study of uncertainties in physical measurements”. Second edition. University science books. 1982.
+        https://www.w3schools.com/python/numpy/numpy_random_normal.asp
+        """)
 
    
 # botones 
