@@ -5,10 +5,12 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+# Función para ajustar una distribución gaussiana
 def gaussian(x, A, u, r):
     return A * np.exp(-((x - u) / r) ** 2 / 2)
 
-def plot_covid_data(data, A, u, r, num_bins=10):
+# Función para mostrar gráficos de datos COVID-19 con ajuste gaussiano
+def plot_covid_data(data, A, u, r):
     fig = go.Figure()
     x_fit = np.linspace(0, len(data) - 1, 100)
 
@@ -27,17 +29,6 @@ def plot_covid_data(data, A, u, r, num_bins=10):
         y=fit_y,
         name='Fit',
         mode='lines'
-    ))
-
-    # Histograma con bins personalizados
-    data_values = data['Casos por fecha de emisión de resultados'].values
-    hist, bins = np.histogram(data_values, bins=num_bins)
-    fig.add_trace(go.Bar(
-        x=bins,
-        y=hist,
-        name='Histograma',
-        opacity=0.5,
-        marker=dict(color='blue')
     ))
 
     # Diseño del gráfico
@@ -62,20 +53,118 @@ A2 = 1062.39
 u2 = 139.803
 r2 = 35.1769
 
+# Función para mostrar la imagen de carga
+def show_loading_image():
+    # Mostrar la imagen de carga con CSS y JavaScript
+    st.markdown(
+        """
+        <style>
+        /* Estilos para el div de la imagen de carga */
+        #loading-image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999; /* Asegura que esté en la parte superior */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Estilos para la imagen de carga */
+        #loading-image {
+            width: 80%; /* Ajusta el tamaño de la imagen según sea necesario */
+            height: auto;
+            max-height: 80%; /* Limita la altura para asegurar que se vea bien */
+        }
+        </style>
+        """
+    )
+
+    # Mostrar el div con la imagen de carga
+    st.markdown(
+        """
+        <div id="loading-image-container">
+            <img id="loading-image" src="https://example.com/your-image.jpg">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Ejecutar código JavaScript para ocultar la imagen después de unos segundos
+    st.markdown(
+        """
+        <script>
+        setTimeout(function() {
+            document.getElementById('loading-image-container').style.display = 'none';
+        }, 3000);  // Oculta la imagen después de 3 segundos (3000 milisegundos)
+        </script>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Aplicación Streamlit
-st.title('Visualización Interactiva de Datos COVID-19')
+def main():
+    # Llama a la función para mostrar la imagen de carga
+    show_loading_image()
 
-# Mostrar gráficos fuera de los expanders
-st.subheader('Visualización de Datos')
+    # Encabezado y título de la aplicación
+    st.title('Visualización Interactiva de Datos COVID-19')
 
-# Gráfico para datos1
-st.subheader('Primer conjunto de datos')
-num_bins1 = st.slider('Número de bins para histograma de datos1', min_value=5, max_value=20, value=10)
-fig1 = plot_covid_data(data1, A1, u1, r1, num_bins1)
-st.plotly_chart(fig1)
+    # Botones para mostrar información y código
+    show_info_button = st.button('Mostrar Información sobre COVID-19')
+    show_code_button = st.button('Ver Código')
 
-# Gráfico para datos2
-st.subheader('Segundo conjunto de datos')
-num_bins2 = st.slider('Número de bins para histograma de datos2', min_value=5, max_value=20, value=10)
-fig2 = plot_covid_data(data2, A2, u2, r2, num_bins2)
-st.plotly_chart(fig2)
+    # Mostrar información sobre COVID-19 si se presiona el botón correspondiente
+    if show_info_button:
+        st.subheader('Resumen - Información sobre COVID-19')
+        st.write("""
+        El COVID-19, derivado de "Coronavirus Disease 2019", es una afección respiratoria provocada por el virus SARS-CoV-2,
+        perteneciente a la familia de los coronavirus, que también incluye el SARS-CoV y el MERS-CoV. La principal vía de
+        transmisión del SARS-CoV-2 es de persona a persona a través de gotas respiratorias expulsadas al toser, estornudar,
+        hablar o respirar, aunque también puede propagarse por contacto con superficies u objetos contaminados con el virus
+        y luego tocarse la boca, la nariz o los ojos.
+
+        En Guatemala, al igual que en muchos otros países, el COVID-19 ha tenido un impacto significativo en la salud pública y
+        en la sociedad en general. Desde el inicio de la pandemia, el país ha experimentado un número considerable de casos
+        confirmados de COVID-19, detectados mediante pruebas de laboratorio como PCR y pruebas rápidas de antígenos. La
+        transmisión comunitaria del virus ha sido especialmente desafiante en áreas urbanas densamente pobladas de Guatemala,
+        llevando a un aumento en la carga de casos en hospitales y centros de salud, poniendo a prueba la capacidad del sistema
+        de salud guatemalteco.
+        """)
+
+    # Mostrar código si se presiona el botón correspondiente
+    if show_code_button:
+        st.subheader('Código Fuente')
+        st.code("""
+        import pandas as pd
+        import streamlit as st
+        import plotly.graph_objects as go
+        import numpy as np
+        import matplotlib
+
+        # Configura Matplotlib para un backend no interactivo
+        matplotlib.use('agg')  # Utiliza el backend 'agg' (renderizado de imagen)
+        import matplotlib.pyplot as plt
+
+        # Funciones y código aquí
+        """)
+
+    # Mostrar gráficos fuera de los expanders
+    st.subheader('Visualización de Datos')
+
+    # Gráfico para datos1
+    st.subheader('Primer conjunto de datos')
+    fig1 = plot_covid_data(data1, A1, u1, r1)
+    st.plotly_chart(fig1)
+
+    # Gráfico para datos2
+    st.subheader('Segundo conjunto de datos')
+    fig2 = plot_covid_data(data2, A2, u2, r2)
+    st.plotly_chart(fig2)
+
+# Llama a la función principal
+if __name__ == '__main__':
+    main()
+
