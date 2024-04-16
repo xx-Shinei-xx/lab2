@@ -3,6 +3,9 @@ import streamlit as st
 import plotly.graph_objects as go
 import numpy as np
 
+from streamlit_player import st_player
+
+
 # Definir la distribucion de gauss
 def gaussian(x, A, u, r):
     return A * np.exp(-((x - u) / r) ** 2 / 2)
