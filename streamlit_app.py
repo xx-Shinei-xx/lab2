@@ -120,9 +120,9 @@ La respuesta a la pandemia en Guatemala ha sido multifacética, involucrando no 
         """)
     with st.expander('Referencias'):
         st.write("""
-        https://pro.arcgis.com/es/proapp/latest/help/analysis/geoprocessing/charts/histogram.html
-        Taylor, John R. “An introduction to error analysis, The study of uncertainties in physical measurements”. Second edition. University science books. 1982.
-        https://www.w3schools.com/python/numpy/numpy_random_normal.asp
+        - Taylor, John R. “An introduction to error analysis, The study of uncertainties in physical measurements”. Second edition. University science books. 1982.
+        - https://www.w3schools.com/python/numpy/numpy_random_normal.asp
+        - https://pro.arcgis.com/es/proapp/latest/help/analysis/geoprocessing/charts/histogram.html
         """)
 
    
